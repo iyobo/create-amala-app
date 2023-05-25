@@ -1,5 +1,5 @@
-import config from '../config/config';
-import {IMailAdapter, IMailAdapterSendParams} from '../config/configTypes';
+import config from '../config/lib/config';
+import {IMailAdapter, IMailAdapterSendParams} from '../config/lib/configTypes';
 
 let mailEngine: IMailAdapter;
 

@@ -1,6 +1,6 @@
-import {launchAPI} from './endpoints/restApi';
-import {initializeDatabase} from './data';
-import config from './config/config';
+import {launchAPI} from './api/api';
+import {initializeDatabase} from './data/data';
+import config from './config/lib/config';
 
 
 console.log(`Starting application: ${config.appName}...`);

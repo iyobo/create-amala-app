@@ -1,6 +1,6 @@
-import {IMailAdapter, IMailAdapterSendParams} from '../../../config/configTypes';
-import config from '../../../config/config';
-import {errorBadInput, errorDependencyFailed} from '../../errors';
+import {IMailAdapter, IMailAdapterSendParams} from '../../../config/lib/configTypes';
+import config from '../../../config/lib/config';
+import {errors} from 'amala';
 
 const SparkPost = require('sparkpost');
 
@@ -11,10 +11,10 @@ class SparkpostMailAdapter implements IMailAdapter {
 
     send({from, to, subject, body, fromName, opts = {}}: IMailAdapterSendParams): Promise<any> {
         if (!this.client) {
-            throw errorDependencyFailed('init(...) has not been run yet');
+            throw errors.dependencyFailed('init(...) has not been run yet');
         }
         if (!to) {
-            throw errorBadInput('No Destination email provided');
+            throw errors.badInput('No Destination email provided');
         }
 
         let recipients = [];

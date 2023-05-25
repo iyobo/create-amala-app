@@ -1,38 +1,30 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2021",
     "module": "commonjs",
     "lib": [
-      "es2018",
+      "es2021",
       "dom",
       "ESNext.String"
     ],
-    "declaration": true,                   
+    "declaration": true,
     "sourceMap": true,
     "outDir": "dist",
     "moduleResolution": "node",
     "baseUrl": "./",
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "paths": {
-      "@common/*": [
-        "../common/*"
-      ],
-      "@backend/*": [
-        "src/*"
-      ]
-    }
+    "emitDecoratorMetadata": true
   },
-  "plugins": [
-    {
-      "transform": "@zerollup/ts-transform-paths"
-    }
-  ],
+  "plugins": [],
   "exclude": [
     "node_modules", "dist"
   ],
   "include": [
     "src/**/*"
+  ],
+  "types": [
+    "@types/**/*",
+    "amala/*"
   ]
 }
