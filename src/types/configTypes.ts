@@ -1,28 +1,27 @@
-
 export interface IMailAdapterSendParams {
-  to: string | [string];
-  body: string;
-  from?: string;
-  fromName?: string;
-  subject?: string;
-  opts?: any;
+  to: string | [string]
+  body: string
+  from?: string
+  fromName?: string
+  subject?: string
+  opts?: any
 }
 
 export interface IMailAdapter {
-  init(opts: any): Promise<any>;
+  init(opts: any): Promise<any>
 
-  send(params: IMailAdapterSendParams): Promise<any>;
+  send(params: IMailAdapterSendParams): Promise<any>
 }
 
 export interface ISMSAdapterParams {
-  to: string | [string];
-  body: string;
-  from?: string;
+  to: string | [string]
+  body: string
+  from?: string
 }
 export interface ISMSAdapter {
-  init(opts: any): Promise<any>;
+  init(opts: any): Promise<any>
 
-  send(params: ISMSAdapterParams): Promise<any>;
+  send(params: ISMSAdapterParams): Promise<any>
 }
 
 // export interface IConfig {

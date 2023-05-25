@@ -1,12 +1,11 @@
-import {registerDecorator, ValidationArguments, ValidationOptions} from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator'
 
-const timezoneValidator = require('timezone-validator');
+const timezoneValidator = require('timezone-validator')
 
 export function IsTimezone(validationOptions?: ValidationOptions) {
   return function (object: unknown, propertyName: string) {
-
-    validationOptions = validationOptions || {};
-    validationOptions.message = validationOptions.message || "Not a timezone";
+    validationOptions = validationOptions || {}
+    validationOptions.message = validationOptions.message || 'Not a timezone'
 
     registerDecorator({
       name: 'isTimezone',
@@ -16,12 +15,12 @@ export function IsTimezone(validationOptions?: ValidationOptions) {
       validator: {
         validate(value: any, args: ValidationArguments) {
           try {
-            return timezoneValidator(value);
+            return timezoneValidator(value)
           } catch (err) {
-            return false;
+            return false
           }
         },
       },
-    });
-  };
+    })
+  }
 }

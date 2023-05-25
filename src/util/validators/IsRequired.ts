@@ -1,4 +1,4 @@
-import {registerDecorator, ValidationArguments, ValidationOptions} from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator'
 
 export function IsRequired(validationOptions?: ValidationOptions) {
   return (object: unknown, propertyName: string) => {
@@ -10,13 +10,14 @@ export function IsRequired(validationOptions?: ValidationOptions) {
       validator: {
         validate: (value: any): boolean => {
           if (typeof value === 'string') {
-            return value.trim().length > 0;
+            return value.trim().length > 0
           } else {
-            return !!value;
+            return !!value
           }
         },
-        defaultMessage: (validationArguments?: ValidationArguments): string => `${validationArguments.property} is Required`
-      }
-    });
-  };
+        defaultMessage: (validationArguments?: ValidationArguments): string =>
+          `${validationArguments.property} is Required`,
+      },
+    })
+  }
 }

@@ -1,17 +1,15 @@
-import {IsRequired} from '../../util/validators/IsRequired';
-import {IsBoolean, IsOptional, IsString} from 'class-validator';
-
+import { IsRequired } from '../../util/validators/IsRequired'
+import { IsBoolean, IsOptional, IsString } from 'class-validator'
 
 export class AuthLoginParams {
-
   // Email or username
   @IsRequired()
   @IsString()
-  identity: string;
+  identity: string
 
   @IsRequired()
   @IsString()
-  password: string;
+  password: string
 
   @IsBoolean()
   @IsOptional()

@@ -1,3 +1,3 @@
-export async function initializeDatabase(){
+export async function initializeDatabase() {
   //TODO: initialize your database
 }

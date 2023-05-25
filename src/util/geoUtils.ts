@@ -1,13 +1,13 @@
 export interface IGeoAddress {
-  address1?: string;
-  inside?: string;
-  address2?: string;
-  city?: string;
-  state?: string;
-  country?: string;
-  postalCode?: string;
-  latitude?: number;
-  longitude?: number;
+  address1?: string
+  inside?: string
+  address2?: string
+  city?: string
+  state?: string
+  country?: string
+  postalCode?: string
+  latitude?: number
+  longitude?: number
 }
 
 /**
@@ -15,7 +15,7 @@ export interface IGeoAddress {
  * @param place
  */
 export function convertPlaceToAddress(place) {
-  if (!place) return null;
+  if (!place) return null
 
   const address: IGeoAddress = {
     address1: '',
@@ -26,65 +26,64 @@ export function convertPlaceToAddress(place) {
     postalCode: '',
     state: '',
     country: '',
-    inside: ''
-  };
+    inside: '',
+  }
 
   const ab = {
     number: '',
     route: '',
     neighborhood: '',
-    level2: ''
-  };
+    level2: '',
+  }
 
   const isBusiness =
     place.business_status ||
     (place.types as string[]).includes('point_of_interest') ||
-    (place.types as string[]).includes('establishment');
+    (place.types as string[]).includes('establishment')
 
   const codex = {
     street_number: (v) => {
-      ab.number = v.long_name;
+      ab.number = v.long_name
     },
     route: (v) => {
-      ab.route = v.long_name;
+      ab.route = v.long_name
     },
     neighborhood: (v) => {
-      ab.neighborhood = v.long_name;
+      ab.neighborhood = v.long_name
     },
     locality: (v) => {
-      address.city = v.long_name;
+      address.city = v.long_name
     },
     administrative_area_level_1: (v) => {
-      address.state = v.long_name;
+      address.state = v.long_name
     },
     administrative_area_level_2: (v) => {
-      ab.level2 = v.long_name;
+      ab.level2 = v.long_name
     },
     country: (v) => {
-      address.country = v.long_name;
+      address.country = v.long_name
     },
     postal_code: (v) => {
-      address.postalCode = v.long_name;
-    }
-  };
+      address.postalCode = v.long_name
+    },
+  }
 
   place.address_components.forEach((it) => {
-    const func = codex[it.types[0]];
-    if (func) func(it);
-  });
+    const func = codex[it.types[0]]
+    if (func) func(it)
+  })
 
   //populate address 1
-  address.address1 = `${ab.number} ${ab.route}`;
+  address.address1 = `${ab.number} ${ab.route}`
 
-  const insideBuilder = [];
-  if (isBusiness) insideBuilder.push(place.name);
-  if (ab.neighborhood) insideBuilder.push(ab.neighborhood);
-  if (ab.level2) insideBuilder.push(ab.level2);
+  const insideBuilder = []
+  if (isBusiness) insideBuilder.push(place.name)
+  if (ab.neighborhood) insideBuilder.push(ab.neighborhood)
+  if (ab.level2) insideBuilder.push(ab.level2)
   // use inside to store all other values
-  if (insideBuilder.length > 0)
-    address.inside = 'Within ' + insideBuilder.join(', ') + '.';
+  if (insideBuilder.length > 0) address.inside = 'Within ' + insideBuilder.join(', ') + '.'
 
-  return address;
+  return address
 }
 
 //

@@ -2,23 +2,23 @@ declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace NodeJS {
     interface ProcessEnv {
-      NODE_ENV: 'dev' | 'uat'| 'prod';
-      BASE_URL: string;
-      PORT?: string;
+      NODE_ENV: 'dev' | 'uat' | 'prod'
+      BASE_URL: string
+      PORT?: string
 
-      DATABASE_URL?: string;
-      DB_HOST?: string;
-      DB_PORT?: string;
-      DB_NAME?: string;
-      DB_TYPE?: string;
-      DB_USER?: string;
-      DB_PASSWORD?: string;
-      DB_SSL?: string;
+      DATABASE_URL?: string
+      DB_HOST?: string
+      DB_PORT?: string
+      DB_NAME?: string
+      DB_TYPE?: string
+      DB_USER?: string
+      DB_PASSWORD?: string
+      DB_SSL?: string
 
-      S3_ACCESS_KEY: string;
-      S3_ACCESS_SECRET: string;
-      S3_BUCKET: string;
-      S3_ENDPOINT: string;
+      S3_ACCESS_KEY: string
+      S3_ACCESS_SECRET: string
+      S3_BUCKET: string
+      S3_ENDPOINT: string
 
       SECURITY_KEY_1: string
       SECURITY_KEY_2: string
@@ -32,14 +32,13 @@ declare global {
       MAIL_DEFAULT_ADDRESS: string
       MAIL_DEFAULT_NAME: string
 
-      SMS_DEFAULT_PHONE: string;
-      SMS_TWILIO_KEY: string;
-      SMS_TWILIO_SECRET: string;
+      SMS_DEFAULT_PHONE: string
+      SMS_TWILIO_KEY: string
+      SMS_TWILIO_SECRET: string
 
       ONBOARDING_URL: string
     }
   }
 }
 
-
-export {};
+export {}

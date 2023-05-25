@@ -1,17 +1,16 @@
-import {registerDecorator, ValidationArguments, ValidationOptions} from 'class-validator';
+import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator'
 
-type CustomValidatorParams={
-  name: string;
-  validator: (inputValue: unknown) => boolean | Promise<boolean>;
-  message?: string;
+type CustomValidatorParams = {
+  name: string
+  validator: (inputValue: unknown) => boolean | Promise<boolean>
+  message?: string
   validationOptions?: ValidationOptions
 }
 
-export function IsCustom({name, validationOptions,validator, message}:CustomValidatorParams) {
+export function IsCustom({ name, validationOptions, validator, message }: CustomValidatorParams) {
   return function (object: unknown, propertyName: string) {
-
-    validationOptions = validationOptions || {};
-    validationOptions.message = message || validationOptions.message || "Not valid";
+    validationOptions = validationOptions || {}
+    validationOptions.message = message || validationOptions.message || 'Not valid'
 
     registerDecorator({
       name: name || 'IsCustom',
@@ -20,9 +19,9 @@ export function IsCustom({name, validationOptions,validator, message}:CustomVali
       options: validationOptions,
       validator: {
         validate(value: any, args: ValidationArguments) {
-          return validator(value);
+          return validator(value)
         },
       },
-    });
-  };
+    })
+  }
 }
