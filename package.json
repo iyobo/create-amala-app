@@ -12,13 +12,11 @@
     "test:watch": "jest --config jestconfig.json --watch",
     "build": "tsc",
     "dev": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node src/index.ts",
-    "watch": "tsc -w",
-    "lint": "eslint . --fix --ext .ts",
-    "start": "node dist/backend/src/index.js",
-    "start-pm2": "npm_config_yes=true npx pm2 start dist/backend/src/index.js --name api",
-    "stop": "npx pm2 stop api",
-    "lint:fix": "eslint --fix . --ext .ts",
-    "do-build-api": "npm run build"
+    "lint": "eslint .",
+    "start": "node dist/src/index.js",
+    "start:pm2": "npm_config_yes=true npx pm2 start dist/src/index.js --name api",
+    "stop:pm2": "npx pm2 stop api",
+    "lint:fix": "eslint --fix . --ext .ts"
   },
   "files": [
     "dist/**/*"
