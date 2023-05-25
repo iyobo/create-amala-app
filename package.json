@@ -27,7 +27,7 @@
   "author": "Iyobo Eki",
   "license": "ISC",
   "dependencies": {
-    "amala": "^8.5.6",
+    "amala": "^8.5.7",
     "chance": "^1.1.11",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",

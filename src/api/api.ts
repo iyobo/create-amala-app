@@ -4,7 +4,7 @@ import config from '../config/lib/config'
 import jwt from 'koa-jwt'
 import * as process from 'process'
 
-const bearerToken = require('koa-bearer-token')
+const { bearerToken } = require('koa-bearer-token')
 
 export async function launchAPI() {
   console.log('Launching Rest API...')
