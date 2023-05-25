@@ -1,0 +1,43 @@
+#
+# Builder stage.
+# This stage compiles our code
+FROM node:14.15.5 AS builder
+WORKDIR /usr/src/builder
+
+# copy the package.json and lock file to work directory
+COPY package*.json ./
+COPY yarn.lock ./
+
+# Copy all relevant source code to work directory
+COPY backend/ ./backend/
+#COPY frontend/ ./frontend/
+COPY helpful/ ./helpful/
+COPY ../web/tsconfig.json ./
+#COPY copyStaticAssets.ts ./
+
+RUN ls
+
+# pull in dependencies and build dist/ folder
+RUN yarn install --frozen-lockfile && yarn build
+
+
+#
+# Production stage.
+# This stage gets the compiled JS from the builder stage
+# And creates a lean, sized package with fewer layers.
+#
+FROM node:12.13.0-alpine
+ENV NODE_ENV=production
+WORKDIR /app
+
+COPY package*.json ./
+COPY yarn.lock ./
+RUN yarn install --frozen-lockfile --prod
+
+## We just need the dist folder from the previous build stage.
+COPY --from=builder /usr/src/builder/dist ./dist
+#COPY --from=builder /usr/src/builder/frontend/.next ./frontend/.next
+
+EXPOSE 4004
+CMD [ "npm", "start" ]
+

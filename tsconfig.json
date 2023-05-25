@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "lib": [
+      "es2018",
+      "dom",
+      "ESNext.String"
+    ],
+    "declaration": true,                   
+    "sourceMap": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@common/*": [
+        "../common/*"
+      ],
+      "@backend/*": [
+        "src/*"
+      ]
+    }
+  },
+  "plugins": [
+    {
+      "transform": "@zerollup/ts-transform-paths"
+    }
+  ],
+  "exclude": [
+    "node_modules", "dist"
+  ],
+  "include": [
+    "src/**/*"
+  ]
+}
