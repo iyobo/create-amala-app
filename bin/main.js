@@ -1,9 +1,10 @@
-const fs = require("fs").promises;
-const path = require("path");
+
 
 
 
 async function main() {
+  const fs = require("fs").promises;
+  const path = require("path");
   const {default: chalk} = await import('chalk')
   chalk.white('Amala')
 
