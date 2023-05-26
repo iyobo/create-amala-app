@@ -32,20 +32,12 @@ const config: IConfig = {
   },
   storage: {
     s3: {
-      maxAsyncS3: 20, // this is the default
-      s3RetryCount: 3, // this is the default
-      s3RetryDelay: 1000, // this is the default
-      multipartUploadThreshold: 20971520, // this is the default (20 MB)
-      multipartUploadSize: 15728640, // this is the default (15 MB)
-      bucket: process.env.S3_BUCKET,
-      s3Options: {
+      forcePathStyle: false, // Configures to use subdomain/virtual calling format.
+      endpoint: process.env.S3_ENDPOINT,
+      // region: "us-east-1",
+      credentials: {
         accessKeyId: process.env.S3_KEY,
         secretAccessKey: process.env.S3_SECRET,
-        // region: 'your region',
-        endpoint: process.env.S3_ENDPOINT,
-        sslEnabled: true,
-        // any other options are passed to new AWS.S3()
-        // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property
       },
     },
   },
@@ -67,23 +59,6 @@ const config: IConfig = {
     },
   },
 
-  auth: {
-    sessionExpirySeconds: 60 * 60, // 60 minutes
-    passwordResetExpirySeconds: 60 * 5, // 5 minutes
-    facebook: {
-      clientID: process.env.AUTH_FACEBOOK_KEY,
-      clientSecret: process.env.AUTH_FACEBOOK_SECRET,
-      fbGraphVersion: 'v3.0',
-    },
-    google: {
-      clientID: process.env.AUTH_GOOGLE_KEY,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
-    },
-    instagram: {
-      clientID: null, // etc, Feel free to implement as many as you want
-      clientSecret: null,
-    },
-  },
   sms: {
     engine: {
       adapter: TwilioSMSAdapter,

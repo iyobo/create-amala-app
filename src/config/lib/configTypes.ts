@@ -1,4 +1,5 @@
 import Cookies from 'cookies'
+import { S3ClientConfig } from '@aws-sdk/client-s3'
 
 export interface IMailAdapterSendParams {
   to: string | [string]
@@ -14,6 +15,7 @@ export interface IMailAdapter {
 
   send(params: IMailAdapterSendParams): Promise<any>
 }
+
 
 export interface ISMSAdapterParams {
   to: string | [string]
@@ -43,41 +45,7 @@ export interface IConfig {
   }
 
   storage?: {
-    s3?: {
-      maxAsyncS3?: number // this is the default
-      s3RetryCount?: number // this is the default
-      s3RetryDelay?: number // this is the default
-      multipartUploadThreshold?: number // this is the default (20 MB)
-      multipartUploadSize?: number // this is the default (15 MB)
-      bucket: string
-      s3Options?: {
-        accessKeyId?: string
-        secretAccessKey?: string
-        region?: string
-        endpoint?: string
-        sslEnabled?: boolean
-        // any other options are passed to new AWS.S3()
-        // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property
-      }
-    }
-  }
-
-  auth?: {
-    sessionExpirySeconds?: number // How many hours password reset links last
-    passwordResetExpirySeconds?: number // How many hours password reset links last
-    facebook?: {
-      clientID: string
-      clientSecret: string
-      fbGraphVersion: 'v3.0'
-    }
-    google?: {
-      clientID: string
-      clientSecret: string
-    }
-    instagram?: {
-      clientID: string
-      clientSecret?: string
-    }
+    s3?: S3ClientConfig
   }
 
   mail?: {
