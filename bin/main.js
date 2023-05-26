@@ -35,6 +35,8 @@ async function main() {
 
 
   console.log('\nFinished!\n')
+  console.log(`\nTo launch: cd ${input} && npm run dev !`)
+  console.log(`\nSee README for more details on your new Amala app.`)
 
 }
 
