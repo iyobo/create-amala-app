@@ -5,8 +5,6 @@ const path = require("path");
 
 
 async function main() {
-  const {default: chalk} = await import('chalk')
-  chalk.white('Amala')
 
   console.log('\nBeginning Amala app scaffold~~~\n')
   const src = path.resolve(__dirname,'..')
