@@ -1,6 +1,6 @@
 {
   "name": "create-amala-app",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "An AmalaJS API",
   "bin": "bin/main.js",
   "main": "dist/index.js",
