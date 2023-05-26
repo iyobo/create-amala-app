@@ -16,7 +16,6 @@ export interface IMailAdapter {
   send(params: IMailAdapterSendParams): Promise<any>
 }
 
-
 export interface ISMSAdapterParams {
   to: string | [string]
   body: string
