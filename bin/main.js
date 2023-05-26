@@ -1,41 +1,38 @@
 #!/usr/bin/env node
 
-const fs = require("fs").promises;
-const path = require("path");
+const fs = require('fs').promises
+const path = require('path')
+const download = require('download-git-repo')
+const { execSync } = require('child_process')
 
 
 async function main() {
 
+
   console.log('\nBeginning Amala app scaffold~~~\n')
-  const src = path.resolve(__dirname,'..')
-  const dest = process.argv.slice(2)[0];
-  console.log('From:', src);
-  console.log('To:', dest);
+  const input = process.argv.slice(2)[0]
+  const dest = path.resolve(input)
+  console.log('Destination:', dest)
 
-  console.log(`Ensuring directory ${dest} exists...`)
-  await fs.mkdir(dest, { recursive: true });
+  console.log(`\nEnsuring directory ${dest} exists...`)
+  await fs.mkdir(dest, { recursive: true })
+  await fs.mkdir(dest, { recursive: true })
 
-  console.log('Copying files...')
-  const files = await fs.readdir(src)
+  console.log('\nDownloading project...')
+  await new Promise((resolve, reject)=>{
+    download('iyobo/template-amala-app', dest, function (err) {
+      if(err) reject(err)
+      resolve()
+    })
+  })
 
-
-  for(const file of files){
-    if(file === 'node_modules') continue
-    if(file === 'bin') continue
-    if(file === '.env') continue
-    if(file === 'dist') continue
-    if(file === 'tmp') continue
-    if(file === 'release.sh') continue
-    if(file === '.git') continue
-    if(file === '.idea') continue
-
-    console.log('  copying:', path.resolve(src,file), ' --> ',path.resolve(dest,file))
-    await fs.cp(file, path.resolve(dest,file), { recursive: true });
-  }
+  console.log('\nMaking adjustments...')
+  await fs.cp(path.resolve(dest,'.env.example'), path.resolve(dest,'.env'), { recursive: true });
 
   console.log('\nInstalling dependencies...')
-  const {execSync} = require('child_process');
+  const { execSync } = require('child_process')
   execSync(`cd ${dest} && npm install`)
+
 
   console.log('\nFinished!\n')
 

@@ -1,7 +1,0 @@
-.idea
-dist
-.env
-.env.*.local
-tmp/
-release.sh
-node_modules
