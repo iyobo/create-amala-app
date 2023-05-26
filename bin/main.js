@@ -29,7 +29,7 @@ async function main() {
     if(file === '.git') continue
     if(file === '.idea') continue
 
-    console.log('  copying:', file, ' --> ',path.resolve(dest,file))
+    console.log('  copying:', path.resolve(src,file), ' --> ',path.resolve(dest,file))
     await fs.cp(file, path.resolve(dest,file), { recursive: true });
   }
 
