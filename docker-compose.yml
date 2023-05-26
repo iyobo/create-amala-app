@@ -12,7 +12,7 @@ services:
     ports:
       - 5432:5432
     networks:
-      - standardsNetwork
+      - amalaNetwork
 
   mongodb:
     container_name: mongodb
@@ -25,7 +25,7 @@ services:
     ports:
       - '27017:27017'
     networks:
-      - standardsNetwork
+      - amalaNetwork
 
   redis:
     container_name: redis
@@ -35,7 +35,7 @@ services:
     ports:
       - 6379:6379
     networks:
-      - standardsNetwork
+      - amalaNetwork
 
   api:
     container_name: api
@@ -60,9 +60,9 @@ services:
       - ./:/home/node/app
       # Uncomment the below line if you developing on MacOS
       - /home/node/app/node_modules
-    command: dumb-init node ace serve --watch --node-args="--inspect=0.0.0.0"
+    command: dumb-init npm run dev
     networks:
-      - standardsNetwork
+      - amalaNetwork
 
 volumes:
   postgresVolume:
@@ -70,5 +70,5 @@ volumes:
   mongoVolume:
 
 networks:
-  standardsNetwork:
+  amalaNetwork:
     driver: bridge

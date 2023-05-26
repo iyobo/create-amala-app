@@ -13,14 +13,12 @@ RUN npm ci
 COPY --chown=node:node . .
 
 FROM dependencies AS build
-RUN node ace build --production
+RUN npm run build
 
 FROM base AS production
-ENV NODE_ENV=production
-ENV PORT=$PORT
-ENV HOST=0.0.0.0
+ENV NODE_ENV=prod
 COPY --chown=node:node ./package*.json ./
 RUN npm ci --production
-COPY --chown=node:node --from=build /home/node/app/build .
+COPY --chown=node:node --from=build /home/node/app/dist .
 EXPOSE $PORT
-CMD [ "dumb-init", "node", "server.js" ]
+CMD [ "dumb-init", "npm", "start" ]
