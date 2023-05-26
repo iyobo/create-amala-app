@@ -20,6 +20,7 @@ async function main() {
     if(file === '.env') continue
     if(file === 'dist') continue
     if(file === 'tmp') continue
+    if(file === 'release.sh') continue
     if(file === '.git') continue
     if(file === '.idea') continue
 
